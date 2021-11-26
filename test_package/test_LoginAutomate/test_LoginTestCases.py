@@ -1,5 +1,7 @@
 import time
 
+import pytest
+
 from test_package.test_LoginAutomate.baseClass import BaseClass
 
 
@@ -7,7 +9,7 @@ class TestLogin(BaseClass):
     username = "san112020222@mail.com"
     password = "asdfafewrr234afwe1ssssw2"
 
-    # @pytest.mark.skip
+    @pytest.mark.sanity
     def test_RegisterUser(self):
         self.driver.find_element_by_xpath("//ul[@id='main-nav']/li[2]").click()
         self.driver.find_element_by_xpath("//input[@type='email']").send_keys(self.username)
@@ -25,6 +27,7 @@ class TestLogin(BaseClass):
         # user registered successfully
         self.driver.find_element_by_xpath("//div[@class='woocommerce-MyAccount-content']/p/a").click()
 
+    @pytest.mark.regressiontest
     def test_valid_user_password(self):
         self.driver.find_element_by_xpath("//input[@name='username']").send_keys(self.username)
         self.driver.find_element_by_css_selector("form[class='login'] p:nth-child(2) input").send_keys(self.password)
