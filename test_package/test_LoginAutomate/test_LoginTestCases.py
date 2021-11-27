@@ -43,7 +43,7 @@ class TestLogin(BaseClass):
 
     @pytest.mark.regressiontest
     def test_valid_user_password(self):
-        self.driver.find_element_by_xpath("//ul[@id='main-nav']/li[2]").click()
+        # self.driver.find_element_by_xpath("//ul[@id='main-nav']/li[2]").click() ++ Uncomment this if running only this test case as this step will redirect to login screnn
         path = "C:\\Users\\rigan\\PycharmProjects\\practiceLogin\\test_package\\Utilities\\userdata.xlsx"
         self.driver.find_element_by_xpath("//input[@name='username']").send_keys(
             excel_utils.readData(path, "Sheet1", 2, 1))
