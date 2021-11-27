@@ -43,8 +43,11 @@ class TestLogin(BaseClass):
 
     @pytest.mark.regressiontest
     def test_valid_user_password(self):
-        self.driver.find_element_by_xpath("//input[@name='username']").send_keys(self.username)
-        self.driver.find_element_by_css_selector("form[class='login'] p:nth-child(2) input").send_keys(self.password)
+        self.driver.find_element_by_xpath("//ul[@id='main-nav']/li[2]").click()
+        path = "C:\\Users\\rigan\\PycharmProjects\\practiceLogin\\test_package\\Utilities\\userdata.xlsx"
+        self.driver.find_element_by_xpath("//input[@name='username']").send_keys(
+            excel_utils.readData(path, "Sheet1", 2, 1))
+        self.driver.find_element_by_css_selector("form[class='login'] p:nth-child(2) input").send_keys(excel_utils.readData(path, "Sheet1", 2, 2))
         self.driver.find_element_by_css_selector("form[class='login'] p:nth-child(3) input:nth-child(3)").click()
         successLoginText = self.driver.find_element_by_xpath("//div[@class='woocommerce-MyAccount-content']/p[2]").text
         print(successLoginText)
